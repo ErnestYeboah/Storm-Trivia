@@ -1,0 +1,103 @@
+.starting_page {
+  height: 100vh;
+  background-image: url("/tom-barrett-hgGplX3PFBg-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+  position: relative;
+  isolation: isolate;
+  font-family: var(--font-1);
+
+  .text_content {
+    anchor-name: --text-content;
+    background: #020024;
+    background: linear-gradient(
+      90deg,
+      rgb(0, 0, 0) 0%,
+      rgb(1, 1, 14) 35%,
+      transparent 100%
+    );
+    height: 100vh;
+    display: grid;
+    gap: var(--gap);
+    align-content: center;
+    justify-items: start;
+    font-size: 3rem;
+    padding-inline-start: var(--padding);
+  }
+
+  & h2 {
+    font-weight: lighter;
+  }
+}
+
+.difficulty_selection_modal {
+  padding-top: var(--gap);
+  height: 100%;
+  color: var(--light-clr);
+  /* backdrop-filter: blur(10px); */
+  display: grid;
+  justify-content: center;
+  align-items: start;
+
+  h2 {
+    text-align: center;
+  }
+}
+.play__btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+}
+
+.nickname_modal {
+  display: grid;
+  gap: 3rem;
+  color: var(--light-clr);
+}
+
+.error {
+  font-family: var(--font-1);
+  color: var(--alt-light-clr);
+}
+
+.split-text-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.text-part {
+  display: inline-block;
+  position: relative;
+  transform: translateX(0);
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.text-part.left {
+  transform: translateX(-200%);
+  animation-name: slide-in-left;
+}
+
+.text-part.right {
+  transform: translateX(200%);
+  animation-name: slide-in-right;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -57,7 +57,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://stormtrivia.vercel.app/"
+
 ]
 
 CORS_ALLOW_METHODS = (

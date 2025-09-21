@@ -28,12 +28,13 @@
 
   & h2 {
     font-weight: lighter;
+    font-size: clamp(2rem, 5vw, 4rem);
   }
 }
 
 .difficulty_selection_modal {
   padding-top: var(--gap);
-  height: 100%;
+  height: 80%;
   color: var(--light-clr);
   /* backdrop-filter: blur(10px); */
   display: grid;
@@ -100,4 +101,8 @@
   100% {
     transform: translateX(0);
   }
+}
+
+.custom_back_icon {
+  position: absolute;
 }

@@ -9,7 +9,7 @@ import wrongSound from "/assets/wrong.mp3";
 import { useSound } from "react-sounds";
 import { useCookies } from "react-cookie";
 
-const TIMER = 30;
+const TIMER = 399999999990;
 const NO_FIFTYFIFTY = 2;
 const NO_SHOWANSWER = 2;
 

@@ -19,6 +19,7 @@ const PlayButton = ({ name = "Play" }: { name: React.ReactNode }) => {
   const [user_userChoice] = useCookies(["user_userChoice"]);
   const navigate = useNavigate();
   const path = location.pathname;
+
   const showDrawer = () => {
     if (user_userChoice["user_userChoice"]) {
       navigate("/main_deck");
@@ -70,7 +71,10 @@ const PlayButton = ({ name = "Play" }: { name: React.ReactNode }) => {
         onClose={onClose}
         open={open}
       >
-        <DifficultySelectPage onclick={showChildrenDrawer} />
+        <DifficultySelectPage
+          closeDrawer={() => setOpen(false)}
+          onclick={showChildrenDrawer}
+        />
 
         <Drawer
           style={styles}

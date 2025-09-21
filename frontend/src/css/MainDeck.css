@@ -1,7 +1,7 @@
 .question_tub {
   position: relative;
   height: 100vh;
-  --radius: 2rem;
+  --radius: var(--big-gap);
 }
 .main_deck {
   padding: var(--padding);
@@ -10,7 +10,7 @@
 }
 
 .back_icon {
-  font-size: 2rem;
+  font-size: var(--big-gap);
   margin-bottom: var(--gap);
   cursor: pointer;
   transition: scale 200ms linear;
@@ -72,86 +72,23 @@
   }
 }
 
-figure {
-  height: 35vh;
-  width: 20rem;
-  margin-inline: auto;
-
-  & img {
-    object-fit: cover;
-    height: inherit;
-  }
-}
-
-.timer {
+.options > * {
   border-radius: var(--radius);
-  background-color: hsla(from var(--alt-light-clr) h s l / 0.5);
-  position: absolute;
-  width: 100px;
+  transition: opacity 500ms;
+  opacity: 0;
+  animation: fadeIn linear forwards 500ms;
 
-  outline: 1px solid var(--light-clr);
-  top: 2rem;
-  left: 2rem;
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  justify-items: center;
-}
-
-.question_deck {
-  width: 90%;
-  --btn-font: var(--text-font);
-  margin-inline: auto;
-  padding: 1rem;
-  display: grid;
-  gap: 2rem;
-
-  & p {
-    font-size: var(--step-1);
-    font-weight: 300;
-    outline: 1px solid var(--light-clr);
-    width: max-content;
-    text-align: center;
-    margin-inline: auto;
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    position: relative;
+  &:nth-child(1) {
+    animation-delay: 0.2s;
   }
-
-  .options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    --btn-bg: transparent;
-
-    > * {
-      border-radius: var(--radius);
-      transition: opacity 500ms;
-      opacity: 0;
-      animation: fadeIn linear forwards 500ms;
-
-      &:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      &:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      &:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-      &:nth-child(4) {
-        animation-delay: 0.8s;
-      }
-    }
+  &:nth-child(2) {
+    animation-delay: 0.4s;
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  &:nth-child(3) {
+    animation-delay: 0.6s;
   }
-
-  to {
-    opacity: 1;
+  &:nth-child(4) {
+    animation-delay: 0.8s;
   }
 }
 
@@ -186,5 +123,113 @@ figure {
     display: grid;
     place-items: center;
     font-family: var(--text-font);
+  }
+}
+
+/* for mobile devices */
+@media (width < 992px) {
+  .question_tub {
+    padding: var(--padding);
+  }
+
+  .timer {
+    border-radius: var(--radius);
+    background-color: hsla(from var(--alt-light-clr) h s l / 0.5);
+    width: 100px;
+    outline: 1px solid var(--light-clr);
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    justify-items: center;
+    margin-bottom: var(--gap);
+  }
+
+  .question_deck {
+    display: grid;
+    margin-bottom: var(--big-gap);
+  }
+
+  figure {
+    height: 20vh;
+    margin-bottom: var(--big-gap);
+    width: max(300px, 40%);
+    margin-inline: auto;
+
+    & img {
+      object-fit: cover;
+      height: inherit;
+      width: 100%;
+    }
+  }
+  .options {
+    --btn-bg: transparent;
+    display: grid;
+    margin-top: var(--gap);
+    gap: var(--big-gap);
+  }
+}
+
+/* for larger screens */
+@media (width > 992px) {
+  .timer {
+    border-radius: var(--radius);
+    background-color: hsla(from var(--alt-light-clr) h s l / 0.5);
+    position: absolute;
+    width: 100px;
+    outline: 1px solid var(--light-clr);
+    top: var(--big-gap);
+    left: var(--big-gap);
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    justify-items: center;
+  }
+
+  .question_deck {
+    width: 90%;
+    --btn-font: var(--text-font);
+    margin-inline: auto;
+    padding: 1rem;
+    display: grid;
+    gap: var(--big-gap);
+
+    figure {
+      height: 35vh;
+      width: 20rem;
+      margin-inline: auto;
+
+      & img {
+        object-fit: cover;
+        height: inherit;
+        width: 100%;
+      }
+    }
+
+    & p {
+      font-size: var(--step-1);
+      font-weight: 300;
+      outline: 1px solid var(--light-clr);
+      width: max-content;
+      text-align: center;
+      margin-inline: auto;
+      padding: 1rem var(--big-gap);
+      border-radius: var(--big-gap);
+      position: relative;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--big-gap);
+      --btn-bg: transparent;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

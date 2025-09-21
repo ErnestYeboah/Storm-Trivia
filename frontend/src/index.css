@@ -17,6 +17,7 @@
   --font-1: Nosifer, cursive;
   --radius: 10px;
   --gap: 1rem;
+  --big-gap: 2rem;
   --text-font: Poppins;
 
   /* background-color: var(--accent-clr); */
@@ -26,10 +27,10 @@
 body {
   background-color: hsla(from var(--primary-clr) h s l / 0.95);
   background-size: cover;
-  background-image: url("/Wave\ hokusai\ on\ raising\ sun\ background\ in\ japanese\ style\ ai\ generated\ big\ tsunami\ in\ traditional\ oriental\ style\ _\ Premium\ AI-generated\ image.jpg");
+  background-image: url("/storm1.jpg");
+  background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  background-blend-mode: multiply;
+  background-blend-mode: overlay;
 }
 
 h2 {
@@ -72,4 +73,5 @@ button {
 
 p {
   font-family: var(--text-font);
+  font-size: var(--step-1);
 }

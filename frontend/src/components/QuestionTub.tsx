@@ -4,13 +4,11 @@ import { questionsData, updateStageStatus } from "../features/QuestionSlice";
 import "../css/MainDeck.css";
 import React, { useEffect, useRef, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
-import correctSound from "/assets/correct.mp3";
-import wrongSound from "/assets/wrong.mp3";
 import { useSound } from "react-sounds";
 import { useCookies } from "react-cookie";
 
 const TIMER = 30;
-const DELAY = 3000;
+const DELAY = 2000;
 
 const QuestionTub = () => {
   const { id } = useParams();
@@ -25,8 +23,8 @@ const QuestionTub = () => {
   const [no_showAnswer] = useState(showAnswerCount["show_answer_count"]);
   const [no_fiftyfifty] = useState(fifty_fifty_count["fifty_fifty_count"]);
   const dispatch = useDispatch();
-  const { play: playcorrect } = useSound(correctSound);
-  const { play: playWrong } = useSound(wrongSound);
+  const { play: playcorrect } = useSound("notification/info");
+  const { play: playWrong } = useSound("notification/error");
 
   const foundQuestion = questions.find((question) => question.id == id);
   const option1Ref = useRef<HTMLButtonElement | null>(null);
@@ -77,7 +75,6 @@ const QuestionTub = () => {
         (ref.current as HTMLButtonElement).style.backgroundColor = "green";
       }
     });
-    playcorrect();
 
     setTimeout(() => {
       navigate("/main_deck");

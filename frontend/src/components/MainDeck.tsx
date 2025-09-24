@@ -7,20 +7,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import PlayButton from "./PlayButton";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useSound } from "react-sounds";
-import { useEffect } from "react";
-import suspense from "/assets/suspense.mp3";
+// import suspense from "/assets/suspense.mp3";
 
 const MainDeck = () => {
   const { questions } = useSelector(questionsData);
   const navigate = useNavigate();
-
-  const { play, isPlaying } = useSound(suspense, { loop: true });
-  useEffect(() => {
-    if (!isPlaying) {
-      play();
-    }
-  }, []);
 
   return (
     <>

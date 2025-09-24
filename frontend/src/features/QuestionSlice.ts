@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "https://restapi.pythonanywhere.com/api/";
+// const BASE_URL = "https://restapi.pythonanywhere.com/api";
+const BASE_URL = "http://127.0.0.1:8000/api";
 
 type Question = {
   id: string;

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { hideSettingsDeck, questionsData } from "../features/QuestionSlice";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+const NO_FIFTYFIFTY = 2;
+const NO_SHOWANSWER = 2;
 
 const NicknamePage = ({}) => {
   const [nickname, setNickname] = useState("");
@@ -11,6 +13,8 @@ const NicknamePage = ({}) => {
   const [user_userChoice, setUser_UserChoice] = useCookies(["user_userChoice"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [, setFiftyFiftyCount] = useCookies(["fifty_fifty_count"]);
+  const [, setShowAnswerCount] = useCookies(["show_answer_count"]);
 
   const saveSettings = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +25,8 @@ const NicknamePage = ({}) => {
       });
       navigate("/main_deck");
       dispatch(hideSettingsDeck());
+      setFiftyFiftyCount("fifty_fifty_count", Number(NO_FIFTYFIFTY));
+      setShowAnswerCount("show_answer_count", Number(NO_SHOWANSWER));
     } else {
       setError("Please enter your nickname to continue");
     }

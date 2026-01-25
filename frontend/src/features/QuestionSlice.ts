@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "https://restapi.pythonanywhere.com/api";
-// const BASE_URL = "http://localhost:8000/api";
+// const BASE_URL = "https://restapi.pythonanywhere.com/api";
+const BASE_URL = "http://localhost:8000/api";
 
 function loadLocalStorageHighScores(): Score[] {
   const storedHighScores = localStorage.getItem("highScores");

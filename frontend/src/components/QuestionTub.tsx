@@ -80,16 +80,10 @@ const QuestionTub = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(currentQuestionIndex);
-  }, [currentQuestionIndex]);
-
   const nextQuestion = () => {
     setTimeout(() => {
       resetButtonStyles();
-      setCurrentQuestionIndex((p) =>
-        p === getRandomIndex() ? getRandomIndex() : getRandomIndex(),
-      );
+      setCurrentQuestionIndex(getRandomIndex());
       setTimer(TIMER);
     }, DELAY);
   };

@@ -66,6 +66,7 @@ const QuestionTub = () => {
   const selectAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     const selectedOption = e.currentTarget.getAttribute("data-option");
     fiftyfiftyBtnRef.current!.disabled = false;
+    setTimer(TIMER);
     if (mainQuestion.correct_answer === selectedOption) {
       e.currentTarget.style.backgroundColor = "green";
       playcorrect();

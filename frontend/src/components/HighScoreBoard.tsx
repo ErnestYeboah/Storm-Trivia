@@ -17,6 +17,9 @@ const HighScoreBoard = () => {
       }
     >
       <div className="high_scores_board p-4">
+        <div className="crown">
+          <img src="/Crown_PNG_Template_Transparent_Background_V1.png" alt="" />
+        </div>
         <div className="flex justify-end">
           <BsDoorClosed
             onClick={() => dispatch(toggleHighScoresBoard(false))}

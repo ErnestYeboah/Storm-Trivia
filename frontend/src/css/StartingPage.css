@@ -128,23 +128,18 @@
   margin: auto;
   border-radius: 1rem 1rem 5rem 5rem;
   position: relative;
+}
 
-  & ::before {
-    --size: 5rem;
-    content: "";
-    top: -3rem;
-    left: 8rem;
-    background-image: url("/Crown_PNG_Template_Transparent_Background_V1.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: var(--size);
-    height: var(--size);
-    position: absolute;
-    scale: 1.2;
+.crown {
+  height: 20vh;
+  position: absolute;
+  top: -5rem;
+  left: 0;
+  width: 100%;
 
-    @media (width > 992px) {
-      left: 45%;
-    }
+  & img {
+    height: 100%;
+    width: 20%;
+    margin-inline: auto;
   }
 }

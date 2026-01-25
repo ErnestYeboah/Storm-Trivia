@@ -15,7 +15,7 @@ import PlayButton from "./PlayButton";
 import GameOverModal from "./GameOverModal";
 import { FaHeartbeat } from "react-icons/fa";
 
-const TIMER = 9999999990;
+const TIMER = 30;
 const DELAY = 1000;
 
 const QuestionTub = () => {

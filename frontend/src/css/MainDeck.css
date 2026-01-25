@@ -113,6 +113,10 @@
     padding: var(--padding);
   }
 
+  .large_screen_points {
+    display: none;
+  }
+
   .question_deck {
     display: grid;
     margin-bottom: var(--big-gap);
@@ -145,6 +149,10 @@
     position: absolute;
     top: 50%;
     right: 4rem;
+  }
+
+  .small_screen_points {
+    display: none;
   }
 
   .question_deck {

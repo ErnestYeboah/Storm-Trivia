@@ -123,6 +123,7 @@ const QuestionTub = () => {
 
   useEffect(() => {
     if (timer === 0) {
+      setLives((p) => p - 1);
       highlightCorrectAnswer();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -179,8 +180,8 @@ const QuestionTub = () => {
         <div className="flex gap-2 items-center ">
           <FaHeartbeat className="text-red-600 text-2xl" /> ~ <p>{lives}</p>
         </div>
-
-        <h2>Score: {score * 20} Points</h2>
+        <h2 className="large_screen_points">Scores : {score * 20} POINTS</h2>
+        <h2 className="small_screen_points">{score * 20}</h2>
 
         <PlayButton name={<IoSettingsOutline />} />
       </div>

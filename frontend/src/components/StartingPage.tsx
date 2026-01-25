@@ -15,7 +15,7 @@ const StartingPage = () => {
             <span className="text-part left">Storm</span>{" "}
             <span className="text-part right">Trivia</span>
           </h2>
-          <div className="flex gap-4">
+          <div className="buttons_container space-y-4">
             <PlayButton name={"Play"} />
             <button onClick={() => dispatch(toggleHighScoresBoard(true))}>
               Your HighScores

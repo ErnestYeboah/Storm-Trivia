@@ -15,11 +15,13 @@ import PlayButton from "./PlayButton";
 import GameOverModal from "./GameOverModal";
 import { FaHeartbeat } from "react-icons/fa";
 
-const TIMER = 99999999;
+const TIMER = 30;
 const DELAY = 1000;
 
 const QuestionTub = () => {
   const { questions } = useSelector(questionsData);
+  console.log(questions);
+
   const [fifty_fifty_count, setFiftyFiftyCount] = useCookies([
     "fifty_fifty_count",
   ]);

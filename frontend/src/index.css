@@ -65,10 +65,6 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: var(--btn-font, var(--font-1));
-
-  &:hover {
-    background-color: var(--alt-light-clr);
-  }
 }
 
 p {

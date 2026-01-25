@@ -15,7 +15,7 @@ import PlayButton from "./PlayButton";
 import GameOverModal from "./GameOverModal";
 import { FaHeartbeat } from "react-icons/fa";
 
-const TIMER = 30;
+const TIMER = 99999999;
 const DELAY = 1000;
 
 const QuestionTub = () => {
@@ -66,21 +66,31 @@ const QuestionTub = () => {
   const selectAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     const selectedOption = e.currentTarget.getAttribute("data-option");
     fiftyfiftyBtnRef.current!.disabled = false;
-    setTimer(TIMER);
-    if (mainQuestion.correct_answer === selectedOption) {
+
+    if (mainQuestion?.correct_answer === selectedOption) {
       e.currentTarget.style.backgroundColor = "green";
       playcorrect();
       setScore(score + 1);
+      nextQuestion();
     } else {
       playWrong(); //play sound
       e.currentTarget.style.backgroundColor = "red";
       highlightCorrectAnswer();
       setLives(lives - 1);
     }
+  };
 
+  useEffect(() => {
+    console.log(currentQuestionIndex);
+  }, [currentQuestionIndex]);
+
+  const nextQuestion = () => {
     setTimeout(() => {
       resetButtonStyles();
-      setCurrentQuestionIndex(getRandomIndex());
+      setCurrentQuestionIndex((p) =>
+        p === getRandomIndex() ? getRandomIndex() : getRandomIndex(),
+      );
+      setTimer(TIMER);
     }, DELAY);
   };
 
@@ -108,12 +118,10 @@ const QuestionTub = () => {
       }
     });
 
-    setTimeout(() => {
-      setCurrentQuestionIndex(getRandomIndex());
-    }, DELAY);
+    nextQuestion();
   };
 
-  // for timwer
+  // for timer
   useEffect(() => {
     const timer = setInterval(() => {
       setTimer((prev) => (prev > 0 ? prev - 1 : 0));

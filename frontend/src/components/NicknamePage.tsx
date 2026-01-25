@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NO_FIFTYFIFTY = 2;
 const NO_SHOWANSWER = 2;
 
-const NicknamePage = ({}) => {
+const NicknamePage = () => {
   const [nickname, setNickname] = useState("");
   const { difficulty } = useSelector(questionsData);
   const [error, setError] = useState("");
@@ -23,7 +23,7 @@ const NicknamePage = ({}) => {
         difficulty: difficulty,
         nickname: nickname,
       });
-      navigate("/main_deck");
+      navigate("/question_tub");
       dispatch(hideSettingsDeck());
       setFiftyFiftyCount("fifty_fifty_count", Number(NO_FIFTYFIFTY));
       setShowAnswerCount("show_answer_count", Number(NO_SHOWANSWER));

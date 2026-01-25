@@ -23,6 +23,5 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("quiz_app.urls")),
-    path('api/auth/', obtain_auth_token)
 
 ] + static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)

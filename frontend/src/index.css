@@ -12,7 +12,7 @@
   --alt-light-clr: #a68780;
   --padding-min: 1rem;
   --padding: 3cqi;
-  --step-1: clamp(1rem, 3vw, 1.3rem);
+  --step-1: clamp(1rem, 3vw, 1.2rem);
   --step-2: clamp(1.3rem, 4vw, 2.5rem);
   --font-1: Nosifer, cursive;
   --radius: 10px;

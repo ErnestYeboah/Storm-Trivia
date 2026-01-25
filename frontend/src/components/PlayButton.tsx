@@ -22,9 +22,9 @@ const PlayButton = ({ name = "Play" }: { name: React.ReactNode }) => {
 
   const showDrawer = () => {
     if (user_userChoice["user_userChoice"]) {
-      navigate("/main_deck");
+      navigate("/question_tub");
 
-      if (path == "/main_deck") {
+      if (path == "/question_tub") {
         setOpen(true);
         dispatch(showSettingsDeck());
       }

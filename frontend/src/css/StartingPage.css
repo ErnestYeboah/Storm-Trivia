@@ -106,3 +106,45 @@
 .custom_back_icon {
   position: absolute;
 }
+
+.high_scores_wrapper {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  display: grid;
+  translate: 0 -100%;
+  z-index: 1000;
+  transition: 500ms translate;
+
+  &.active {
+    translate: 0 0;
+  }
+}
+
+.high_scores_board {
+  background-image: linear-gradient(var(--primary-clr), black);
+  height: 80vh;
+  width: max(300px, 50%);
+  margin: auto;
+  border-radius: 1rem 1rem 5rem 5rem;
+  position: relative;
+
+  & ::before {
+    --size: 5rem;
+    content: "";
+    top: -3rem;
+    left: 8rem;
+    background-image: url("/Crown_PNG_Template_Transparent_Background_V1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    scale: 1.2;
+
+    @media (width > 992px) {
+      left: 45%;
+    }
+  }
+}

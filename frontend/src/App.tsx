@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import StartingPage from "./components/StartingPage";
-import MainDeck from "./components/MainDeck";
 import QuestionTub from "./components/QuestionTub";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
@@ -15,14 +14,14 @@ function App() {
     if (user_userChoice["user_userChoice"]) {
       dispatch(fetchQuestions(user_userChoice["user_userChoice"].difficulty));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user_userChoice]);
 
   return (
     <>
       <Routes>
         <Route path="/" element={<StartingPage />} />
-        <Route path="/main_deck" element={<MainDeck />} />
-        <Route path="/question_tub/:id" element={<QuestionTub />} />
+        <Route path="/question_tub" element={<QuestionTub />} />
       </Routes>
     </>
   );

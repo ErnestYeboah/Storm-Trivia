@@ -1,8 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "https://restapi.pythonanywhere.com/api";
-// const BASE_URL = "http://localhost:8000/api";
+// const BASE_URL = "https://restapi.pythonanywhere.com/api";
+const BASE_URL = "http://localhost:8000/api";
+
+function loadLocalStorageHighScores(): Score[] {
+  const storedHighScores = localStorage.getItem("highScores");
+  return storedHighScores ? JSON.parse(storedHighScores) : [];
+}
+
+function saveHighScoresToLocalStorage(highScores: Score[]) {
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+}
 
 type Question = {
   id: string;
@@ -12,63 +21,42 @@ type Question = {
   option2: string;
   option3: string;
   option4: string;
-  user_choice: string;
   correct_answer: string;
-  stage_status: string;
+};
+
+type Score = {
+  nickname: string;
+  score: number;
 };
 
 type State = {
   fetching_questions_status: "idle" | "loading" | "succeeded" | "failed";
-  update_stage_status: "idle" | "loading" | "succeeded" | "failed";
   questions: Question[];
   difficulty: string;
   settingsDeckView: boolean;
+  isGameOver: boolean;
+  highScores: Score[];
+  showHighScoresBoard: boolean;
 };
 
 const initialState: State = {
   fetching_questions_status: "idle",
-  update_stage_status: "idle",
   questions: [],
   difficulty: "",
   settingsDeckView: false,
+  isGameOver: false,
+  highScores: loadLocalStorageHighScores(),
+  showHighScoresBoard: false,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchQuestions: any = createAsyncThunk(
   "fetch/questions",
   async (choice: string) => {
     const response = await axios.get(`${BASE_URL}/quiz?difficulty=${choice}`);
 
     return response.data;
-  }
-);
-
-type Payload = {
-  id: string;
-  status: string;
-  user_choice: string;
-};
-export const updateStageStatus: any = createAsyncThunk(
-  "update/stage_status",
-  async (payload: Payload) => {
-    const { id, status, user_choice } = payload;
-
-    if (id) {
-      const response = await axios.patch(
-        `${BASE_URL}/quiz/${id}/`,
-        {
-          stage_status: status,
-          user_choice: user_choice,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log(response.data);
-      return response.data;
-    }
-  }
+  },
 );
 
 export const QuestionsSlice = createSlice({
@@ -85,6 +73,17 @@ export const QuestionsSlice = createSlice({
     showSettingsDeck(state) {
       state.settingsDeckView = true;
     },
+
+    setIsGameOver(state, action) {
+      state.isGameOver = action.payload;
+    },
+    setNewHighScore(state, action) {
+      state.highScores.unshift(action.payload);
+      saveHighScoresToLocalStorage(state.highScores);
+    },
+    toggleHighScoresBoard(state, action) {
+      state.showHighScoresBoard = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -98,28 +97,17 @@ export const QuestionsSlice = createSlice({
       })
       .addCase(fetchQuestions.rejected, (state) => {
         state.fetching_questions_status = "failed";
-      })
-
-      // update stage status
-      .addCase(updateStageStatus.pending, (state) => {
-        state.update_stage_status = "loading";
-      })
-      .addCase(updateStageStatus.fulfilled, (state, action) => {
-        state.update_stage_status = "succeeded";
-        const foundQuestion = state.questions.find(
-          (question) => question.id == action.payload.id
-        );
-        if (foundQuestion) {
-          foundQuestion.stage_status = action.payload.stage_status;
-        }
-      })
-      .addCase(updateStageStatus.rejected, (state) => {
-        state.update_stage_status = "failed";
       });
   },
 });
 
 export default QuestionsSlice.reducer;
-export const { getDifficulty, hideSettingsDeck, showSettingsDeck } =
-  QuestionsSlice.actions;
+export const {
+  getDifficulty,
+  hideSettingsDeck,
+  showSettingsDeck,
+  setIsGameOver,
+  setNewHighScore,
+  toggleHighScoresBoard,
+} = QuestionsSlice.actions;
 export const questionsData = (state: { questions: State }) => state.questions;

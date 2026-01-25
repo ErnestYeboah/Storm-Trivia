@@ -1,7 +1,12 @@
+import { useDispatch } from "react-redux";
 import "../css/StartingPage.css";
+import HighScoreBoard from "./HighScoreBoard";
 import PlayButton from "./PlayButton";
+import { toggleHighScoresBoard } from "../features/QuestionSlice";
 
 const StartingPage = () => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="starting_page">
@@ -10,8 +15,14 @@ const StartingPage = () => {
             <span className="text-part left">Storm</span>{" "}
             <span className="text-part right">Trivia</span>
           </h2>
-          <PlayButton name={"Play"} />
+          <div className="flex gap-4">
+            <PlayButton name={"Play"} />
+            <button onClick={() => dispatch(toggleHighScoresBoard(true))}>
+              Your HighScores
+            </button>
+          </div>
         </div>
+        <HighScoreBoard />
       </div>
     </>
   );
